@@ -189,7 +189,8 @@ public interface Crawler extends AutoCloseable {
 ```java
 public interface Downloader {
     public Document download(final String url) throws IOException;
-}```
+}
+```
 
             Метод download загружает документ по его адресу (URL).
             Документ позволяет получить ссылки по загруженной странице:
@@ -197,7 +198,8 @@ public interface Downloader {
 ```java
 public interface Document {
     List<String> extractLinks() throws IOException;
-}```
+}
+```
 
             Ссылки, возвращаемые документом, являются абсолютными и имеют схему http или https. 
         Должен быть реализован метод main, позволяющий запустить обход из командной строки
@@ -205,7 +207,7 @@ public interface Document {
 
 ```java
 WebCrawler url [depth [downloads [extractors [perHost]]]]
-
+```
 
             Для загрузки страниц требуется использовать реализацию CachingDownloader из тестов. 
     Версии задания
