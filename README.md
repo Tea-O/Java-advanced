@@ -131,7 +131,8 @@
 
     Напишите класс ParallelMapperImpl, реализующий интерфейс ParallelMapper.
 
-```public interface ParallelMapper extends AutoCloseable {
+```java
+public interface ParallelMapper extends AutoCloseable {
     <T, R> List<R> map(
         Function<? super T, ? extends R> f,
         List<? extends T> args
@@ -160,7 +161,9 @@
     Напишите потокобезопасный класс WebCrawler, который будет рекурсивно обходить сайты.
         Класс WebCrawler должен иметь конструктор
 
-```public WebCrawler(Downloader downloader, int downloaders, int extractors, int perHost)```
+```java
+public WebCrawler(Downloader downloader, int downloaders, int extractors, int perHost)
+```
 
             downloader позволяет скачивать страницы и извлекать из них ссылки;
             downloaders — максимальное число одновременно загружаемых страниц;
@@ -168,7 +171,8 @@
             perHost — максимальное число страниц, одновременно загружаемых c одного хоста. Для определения хоста следует использовать метод getHost класса URLUtils из тестов. 
         Класс WebCrawler должен реализовывать интерфейс Crawler
 
-```public interface Crawler extends AutoCloseable {
+```java
+public interface Crawler extends AutoCloseable {
     Result download(String url, int depth);
 
     void close();
@@ -182,14 +186,16 @@
             Метод close должен завершать все вспомогательные потоки. 
         Для загрузки страниц должен применяться Downloader, передаваемый первым аргументом конструктора.
 
-```public interface Downloader {
+```java
+public interface Downloader {
     public Document download(final String url) throws IOException;
 }```
 
             Метод download загружает документ по его адресу (URL).
             Документ позволяет получить ссылки по загруженной странице:
 
-```public interface Document {
+```java
+public interface Document {
     List<String> extractLinks() throws IOException;
 }```
 
@@ -197,7 +203,9 @@
         Должен быть реализован метод main, позволяющий запустить обход из командной строки
             Командная строка
 
-```WebCrawler url [depth [downloads [extractors [perHost]]]]```
+```java
+WebCrawler url [depth [downloads [extractors [perHost]]]]
+```
 
             Для загрузки страниц требуется использовать реализацию CachingDownloader из тестов. 
     Версии задания
