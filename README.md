@@ -140,7 +140,7 @@ public interface ParallelMapper extends AutoCloseable {
     
     @Override
     void close();
-    }
+}
 ```
 
         Метод map должен параллельно вычислять функцию f на каждом из указанных аргументов (args).
