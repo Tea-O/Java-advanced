@@ -15,7 +15,8 @@
     Кодировка входного и выходного файлов — UTF-8.
     Размеры файлов могут превышать размер оперативной памяти.
     Пример
-    Входной файл
+    
+Входной файл
  |          |
 |----------|    
 | samples/1 |
@@ -130,15 +131,15 @@
 
     Напишите класс ParallelMapperImpl, реализующий интерфейс ParallelMapper.
 
-    public interface ParallelMapper extends AutoCloseable {
-        <T, R> List<R> map(
-            Function<? super T, ? extends R> f,
-            List<? extends T> args
-        ) throws InterruptedException;
-
-        @Override
-        void close();
-    }
+```public interface ParallelMapper extends AutoCloseable {
+    <T, R> List<R> map(
+        Function<? super T, ? extends R> f,
+        List<? extends T> args
+    ) throws InterruptedException;
+    
+    @Override
+    void close();
+    }```
 
         Метод map должен параллельно вычислять функцию f на каждом из указанных аргументов (args).
         Метод close должен останавливать все рабочие потоки.
@@ -158,7 +159,7 @@
     Напишите потокобезопасный класс WebCrawler, который будет рекурсивно обходить сайты.
         Класс WebCrawler должен иметь конструктор
 
-        public WebCrawler(Downloader downloader, int downloaders, int extractors, int perHost)
+```public WebCrawler(Downloader downloader, int downloaders, int extractors, int perHost)```
 
             downloader позволяет скачивать страницы и извлекать из них ссылки;
             downloaders — максимальное число одновременно загружаемых страниц;
@@ -166,12 +167,12 @@
             perHost — максимальное число страниц, одновременно загружаемых c одного хоста. Для определения хоста следует использовать метод getHost класса URLUtils из тестов. 
         Класс WebCrawler должен реализовывать интерфейс Crawler
 
-        public interface Crawler extends AutoCloseable {
-            Result download(String url, int depth);
+```public interface Crawler extends AutoCloseable {
+    Result download(String url, int depth);
 
-            void close();
-        }
-
+    void close();
+}
+```
             Метод download должен рекурсивно обходить страницы, начиная с указанного URL, на указанную глубину и возвращать список загруженных страниц и файлов. Например, если глубина равна 1, то должна быть загружена только указанная страница. Если глубина равна 2, то указанная страница и те страницы и файлы, на которые она ссылается, и так далее.
             Метод download может вызываться параллельно в нескольких потоках.
             Загрузка и обработка страниц (извлечение ссылок) должна выполняться максимально параллельно, с учетом ограничений на число одновременно загружаемых страниц (в том числе с одного хоста) и страниц, с которых загружаются ссылки.
@@ -180,22 +181,22 @@
             Метод close должен завершать все вспомогательные потоки. 
         Для загрузки страниц должен применяться Downloader, передаваемый первым аргументом конструктора.
 
-        public interface Downloader {
-            public Document download(final String url) throws IOException;
-        }
+```public interface Downloader {
+    public Document download(final String url) throws IOException;
+}```
 
             Метод download загружает документ по его адресу (URL).
             Документ позволяет получить ссылки по загруженной странице:
 
-            public interface Document {
-                List<String> extractLinks() throws IOException;
-            }
+```public interface Document {
+    List<String> extractLinks() throws IOException;
+}```
 
             Ссылки, возвращаемые документом, являются абсолютными и имеют схему http или https. 
         Должен быть реализован метод main, позволяющий запустить обход из командной строки
             Командная строка
 
-            WebCrawler url [depth [downloads [extractors [perHost]]]]
+```WebCrawler url [depth [downloads [extractors [perHost]]]]```
 
             Для загрузки страниц требуется использовать реализацию CachingDownloader из тестов. 
     Версии задания
