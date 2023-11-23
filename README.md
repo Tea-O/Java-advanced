@@ -16,14 +16,15 @@
     Размеры файлов могут превышать размер оперативной памяти.
     Пример
     Входной файл
+ |          |
 |----------|    
 | samples/1 |
-samples/12
-samples/123
-samples/1234
-samples/1
-samples/binary
-samples/no-such-file
+| samples/12 |
+| samples/123 |
+| samples/1234 |
+| samples/1 |
+| samples/binary |
+| samples/no-such-file |
                             
     
     Выходной файл
